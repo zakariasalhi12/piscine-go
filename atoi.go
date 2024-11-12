@@ -1,20 +1,29 @@
 package piscine
 
 func Atoi(s string) int {
-	res := 0
-	sign := 1
-	for index, char := range s {
-		if index == 0 && char == '-' {
-			sign = -1
-		} else if index == 0 && char == '+' {
-			sign = 1
-		} else if char >= '0' && char <= '9' {
-			res = res*10 + int(char-48)
-		} else {
+	var result, sign int
+	sign = 1
+
+	for length, char := range s {
+		switch {
+		case char == '+':
+			if length == 0 {
+				sign = 1
+			} else {
+				return 0
+			}
+		case char == '-':
+			if length == 0 {
+				sign = -1
+			} else {
+				return 0
+			}
+		case char >= '0' && char <= '9':
+			result = result*10 + int(char-'0')
+		default:
 			return 0
 		}
 	}
 
-	return res * sign
-
+	return result * sign
 }

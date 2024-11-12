@@ -1,11 +1,11 @@
 package piscine
 
 func BasicJoin(elems []string) string {
-	res := ""
+	b := ""
 
 	for i := 0; i < len(elems); i++ {
-		res += elems[i]
+		b += string(elems[i])
 	}
 
-	return res
+	return string(b)
 }

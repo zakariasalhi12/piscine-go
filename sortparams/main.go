@@ -7,24 +7,20 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 1 {
-		return
-	}
-	args := os.Args[1:]
-
-	for i := 0; i < len(args); i++ {
-		for j := i + 1; j < len(args); j++ {
-			if args[i] > args[j] {
-				args[i], args[j] = args[j], args[i]
+	for i := 1; i < len(os.Args); i++ {
+		for j := i + 1; j < len(os.Args); j++ {
+			if os.Args[i] > os.Args[j] {
+				temp := os.Args[i]
+				os.Args[i] = os.Args[j]
+				os.Args[j] = temp
 			}
 		}
 	}
 
-	for _, elemnt := range args {
-		for _, char := range elemnt {
+	for i := 1; i < len(os.Args); i++ {
+		for _, char := range os.Args[i] {
 			z01.PrintRune(char)
 		}
-		z01.PrintRune(10)
+		z01.PrintRune('\n')
 	}
-
 }

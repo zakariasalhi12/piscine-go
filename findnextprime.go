@@ -1,8 +1,20 @@
 package piscine
 
-func FindNextPrime(nb int) int {
-	if IsPrime(nb) {
-		return nb
+func isPrime1(num int) bool {
+	if num <= 1 {
+		return false
 	}
-	return FindNextPrime(nb + 1)
+	for i := 2; i*i <= num; i++ {
+		if num%i == 0 {
+			return false
+		}
+	}
+	return true
+}
+
+func FindNextPrime(nb int) int {
+	for !isPrime1(nb) {
+		nb++
+	}
+	return nb
 }

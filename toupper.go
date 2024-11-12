@@ -1,13 +1,13 @@
 package piscine
 
 func ToUpper(s string) string {
-	res := ""
-	for _, char := range s {
-		if char >= 'a' && char <= 'z' {
-			res += string(char - 32)
+	b := ""
+	for _, v := range s {
+		if v >= 'a' && v <= 'z' {
+			b += string(v - 32)
 		} else {
-			res += string(char)
+			b += string(v)
 		}
 	}
-	return res
+	return b
 }

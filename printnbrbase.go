@@ -1,8 +1,16 @@
 package piscine
 
-import "github.com/01-edu/z01"
+import (
+	"github.com/01-edu/z01"
+)
 
-func isvalidebase(base string) bool {
+func prints(s string) {
+	for _, v := range s {
+		z01.PrintRune(v)
+	}
+}
+
+func validbase(base string) bool {
 	if len(base) < 2 {
 		return false
 	}
@@ -11,53 +19,56 @@ func isvalidebase(base string) bool {
 		if base[i] == '-' || base[i] == '+' {
 			return false
 		}
+
 		for j := i + 1; j < len(base); j++ {
 			if base[i] == base[j] {
 				return false
 			}
 		}
-
 	}
 	return true
 }
 
-func PrintNbrBase(nbr int, base string) {
+func PrintNbrBase(n int, base string) {
 	res := ""
 	negative := false
 
-	if !isvalidebase(base) {
+	if !validbase(base) {
 		z01.PrintRune('N')
 		z01.PrintRune('V')
 		return
 	}
 
-	if nbr == 0 {
+	if n == 0 {
 		z01.PrintRune('0')
 		return
 	}
 
-	if nbr == -9223372036854775808 {
-		z01.PrintRune('-')
-		PrintNbr(9)
-		PrintNbr(223372036854775808)
+	if n < 0 {
+		negative = true
+		n = n * -1
+	}
+
+	if n == -9223372036854775808 {
+		prints("-")
+		PrintNbrBase(9, base)
+		PrintNbrBase(223372036854775808, base)
 		return
 	}
 
-	if nbr < 0 {
-		negative = true
-		nbr = -nbr
-	}
+	for n != 0 {
+		digits := n % len(base)
 
-	for nbr != 0 {
-		res = string(base[nbr%len(base)]) + res
-		nbr /= len(base)
+		res = string(base[digits]) + res
+
+		n /= len(base)
 	}
 
 	if negative {
 		res = "-" + res
+		prints(res)
+		return
 	}
 
-	for _, char := range res {
-		z01.PrintRune(char)
-	}
+	prints(res)
 }

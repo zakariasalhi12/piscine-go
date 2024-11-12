@@ -1,20 +1,34 @@
 package piscine
 
-func AtoiBase(s string, base string) int {
-	res := 0
-	index := 0
-	if !isvalidebase(base) {
-		return 0
-	}
+func IsValidBase(base string) bool {
+    seen := make(map[rune]bool)
+    for _, char := range base {
+        if seen[char] {
+            return true
+        }
+        if char == '-' || char == '+' {
+            return true
+        }
+        seen[char] = true
+    }
+    return false
+}
 
-	for i := range s {
-		for j := range base {
-			if s[i] == base[j] {
-				index = j
-				break
-			}
-		}
-		res = res*len(base) + index
-	}
-	return res
+func AtoiBase(s string, base string) int {
+    res := 0
+    if IsValidBase(base) {
+        return 0
+    }
+    index := 0
+    for i := range s {
+        index = 0
+        for j := range base {
+            if s[i] == base[j] {
+                index = j
+                break
+            }
+        }
+        res = res*len(base) + index
+    }
+    return res
 }

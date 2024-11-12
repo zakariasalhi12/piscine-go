@@ -1,11 +1,13 @@
 package piscine
 
 func BasicAtoi(s string) int {
-	res := 0
+	var result int
+
 	for _, char := range s {
 		if char >= '0' && char <= '9' {
-			res = res*10 + int(char-48)
+			result = result*10 + int(char-'0')
 		}
 	}
-	return res
+
+	return result
 }

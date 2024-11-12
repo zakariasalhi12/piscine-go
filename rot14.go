@@ -1,23 +1,29 @@
 package piscine
 
 func Rot14(s string) string {
-	res := ""
+	result := ""
+	for _, r := range s {
+		counter := r
 
-	for _, char := range s {
-		counter := char
-		if (char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z') {
+		if counter >= 'a' && counter <= 'z' {
 			for i := 0; i < 14; i++ {
-				if counter == 'z' {
+				counter++
+				if counter > 'z' {
 					counter = 'a'
-				} else if counter == 'Z' {
-					counter = 'A'
-				} else {
-					counter++
 				}
 			}
+			result += string(counter)
+		} else if counter >= 'A' && counter <= 'Z' {
+			for i := 0; i < 14; i++ {
+				counter++
+				if counter > 'Z' {
+					counter = 'A'
+				}
+			}
+			result += string(counter)
+		} else {
+			result += string(r)
 		}
-		res = res + string(counter)
 	}
-
-	return res
+	return result
 }

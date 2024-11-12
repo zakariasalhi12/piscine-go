@@ -7,11 +7,17 @@ import (
 )
 
 func main() {
-	name := []rune(os.Args[0])
+	arg := os.Args[0]
+	for i := len(arg) - 1; i >= 0; i-- {
+		if arg[i] == '/' {
+			arg = arg[i+1:]
+			break
+		}
+	}
 
-	for i := range name {
-		if i > 1 {
-			z01.PrintRune(name[i])
+	for _, char := range arg {
+		if char != '.' && char != '/' {
+			z01.PrintRune(char)
 		}
 	}
 	z01.PrintRune('\n')

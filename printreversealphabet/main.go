@@ -6,5 +6,5 @@ func main() {
 	for char := 'z'; char >= 'a'; char-- {
 		z01.PrintRune(char)
 	}
-	z01.PrintRune(10)
+	z01.PrintRune('\n')
 }

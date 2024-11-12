@@ -1,16 +1,16 @@
 package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	if len(os.Args) == 1 {
-		return
-	}
-	args := os.Args[1:]
-
-	for _, elements := range args {
-		if elements == "01" || elements == "galaxy 01" || elements == "galaxy" {
-			os.Stdout.WriteString("Alert!!!")
+	b := os.Args[1:]
+	for _, v := range b {
+		if v == "01" || v == "galaxy" || v == "galaxy 01" {
+			fmt.Println("Alert!!!")
+			break
 		}
 	}
 }

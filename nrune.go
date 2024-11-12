@@ -1,9 +1,9 @@
 package piscine
 
 func NRune(s string, n int) rune {
-	for index, char := range s {
-		if index+1 == n {
-			return char
+	for lenght, v := range s {
+		if lenght == n-1 {
+			return v
 		}
 	}
 	return 0
